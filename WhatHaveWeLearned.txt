@@ -1,0 +1,8 @@
+What have we learned?
+Arrays -
+A two-dimensional array is just an array of array values
+This is why you can have a numeric/associative. Its a numerical array of associative arrays ex. $php_array[1]["Name"]
+You can declare your array using another array.
+-I have $php_array["ponies", "dragons"]
+-I can declare the array $php_array2[$php_array[0], "saddles"]
+-sizeof is the number of elements whether those are more arrays or just values
