@@ -3,6 +3,7 @@
 include "head.html";
 include "html_factory.php";
 include "html_table_class.php";
+
 /*NOTE: a section for making static assignments to test the code*/
 $header_values=["Name","Age","Occupation","Location"];
 $row_values [0] =[$header_values[0] => "John Smith",
@@ -21,10 +22,8 @@ $row_values [3] =[$header_values[0] => "Nahseem Joulad",
                   $header_values[1] => "32",
                   $header_values[2] => "UI Developer",
                   $header_values[3] => "Boulder, CO"];
-$html_table_obj= new html_table($header_values, $row_values);
-//Some test code
+                  //End of Some test values
 
-//test code
-//add_row_data($new_row_values)
+$html_table_obj= new html_table($header_values, $row_values);
 $html_table_obj->create_html_table();
 ?>

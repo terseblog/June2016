@@ -10,8 +10,10 @@ class html_table
   public $col_name_map; //allows displayed column names to be differnt while the keys for col_names[n][] stay the same
   //this will help when databases are implemented
   public $css_th_class="tableHeader"; //HTML/CSS class name for column names (headers)
+  public $css_th_row_class="tableHeaderRow"; //HTML/CSS class name for the row for the th's
   public $css_table_class="tableClass"; //HTML/CSS class name for the table
   public $css_td_class="tableCell"; //HTML/CSS class name for cells
+  public $css_tr_class="tableRow"; //HTML/CSS class name for cells
 
   public function __construct($col_names_from_user, $row_data_from_user)
   {
@@ -45,16 +47,15 @@ class html_table
   public function create_html_table()
   {
   //create the table html
-  //need to add an array of CSS values
-    echo "<table border=1>";//remove border=1 when debug is over
+    echo "<table class=\"{$this->css_table_class}\">";
 
     //lay down the header row
-    echo "<tr>";
+    echo "<tr class=\"{$this->css_th_row_class}\">";
     //header names are stored here; display them
    for($i=0; $i<sizeof($this->col_names); $i++)
    {
 
-     echo "<th>".$this->col_name_map[$this->col_names[$i]]."</th>";
+     echo "<th class=\"{$this->css_th_class}\">".$this->col_name_map[$this->col_names[$i]]."</th>";
    }
    //done with the header row
    echo "</tr>";
@@ -69,11 +70,11 @@ class html_table
   //For each numerical index in $row_values_arr[$i]...
   for($i=0; $i<sizeof($this->col_data); $i++){
     $row_num=$i+1;//for adding row id's, but I did not want to start with 0
-    echo "<tr id=\"row{$row_num}\">";//Oh, BTW we need a new row for each numerical index in $row_values_arr since each one represents a row
+    echo "<tr class=\"{$this->css_tr_class}\" id=\"row{$row_num}\">";//Oh, BTW we need a new row for each numerical index in $row_values_arr since each one represents a row
         //...access the associative key in the $row_values_arr using the names in $header_names_arr as the keys
         for($j=0; $j<sizeof($this->col_names); $j++){
           $cell_num=$j+1; //for making an id for each cell, but I did not want to start with 0
-          echo "<td id=\"row{$row_num}cell{$cell_num}\">".$this->col_data[$i][$this->col_names[$j]]."</td>";
+          echo "<td class=\"{$this->css_td_class}\" id=\"row{$row_num}cell{$cell_num}\">".$this->col_data[$i][$this->col_names[$j]]."</td>";
         }
     echo "</tr>";//end the row after each iteration of this outer for loop
     }
