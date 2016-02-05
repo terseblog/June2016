@@ -1,1 +1,11 @@
 /* CSS for Table*/
+body {font-family: Segoe UI;}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
