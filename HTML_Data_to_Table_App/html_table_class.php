@@ -3,8 +3,8 @@
 
 class html_table
 {
-  public static $warning_row_values="You have entered more items than expected.";
-  public static $warning_row_values2="You have fewer items than expected.";
+  public $warning_row_values="You have entered more items than expected.";
+  public $warning_row_values2="You have fewer items than expected.";
   public $col_names=["Empty"]; //1D numeric arry of names of the columns set by constructor
   public $col_data; //2D array of values for each column
   public $col_name_map; //allows displayed column names to be differnt while the keys for col_names[n][] stay the same
@@ -36,6 +36,31 @@ class html_table
         $this->col_data[$i][$this->col_names[$i]]=$new_row_values[$i][$this->col_names[$i]];
       }
 
+  }
+
+  public function append_row_data($appended_values)/*$appended_values is a numerical array created by entering data
+                                                    or a mysqli result set; user is expected to know the number and order of the columns*/
+  {
+      if(sizeof($appended_values)>sizeof($this->col_names)){echo $this->warning_row_values; return;}
+      else if(sizeof($appended_values)<sizeof($this->col_names)){echo $this->warning_row_values2; return;}
+      else {
+            $next_index=sizeof($this->col_data);
+
+            for($i=0; $i<sizeof($this->col_names); $i++)
+            {
+              $this->col_data[$next_index][$this->col_names[$i]]=$appended_values[$i];
+            }
+          }
+  }
+
+  public function convert_col_data_to_numerical()
+  {
+    for($i=0; $i<sizeof($this->col_data); $i++){
+      for($j=0; $j<sizeof($this->col_names); $j++){
+          $col_data_numerical[$i][$j]=$this->col_data[$i][$this->col_names[$j]];
+        }
+      }
+      return $col_data_numerical;
   }
 
   public function create_html_table()
