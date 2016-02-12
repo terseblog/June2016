@@ -75,5 +75,10 @@ class html_table
     }
 
   }
+
+  public function rename_column($old_name, $new_name)
+  {
+    $this->col_name_map[$old_name]=$new_name;
+  }
 }
 ?>
