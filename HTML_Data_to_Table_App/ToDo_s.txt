@@ -1,0 +1,3 @@
+To Do List:
+* Edit your append_row_data. You've confused yourself, html_table_class.php, line 41, and I think line 56 and on was also involved. 
+* Create append col that could be used to append a new column name and a column to each set of rows but only adds a NULL entry unless directed
